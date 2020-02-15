@@ -1,0 +1,13 @@
+---
+#- name: Update all packages
+#  package:
+#    upgrade: dist
+#  become: yes
+
+- name: Installl common packages
+  package:
+    name: "{{ common_packages}}"
+    #update_cache: yes
+    state: latest
+  become: yes  
+...

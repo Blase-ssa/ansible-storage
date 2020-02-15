@@ -1,0 +1,60 @@
+---
+- name: "create sirvice account {{ role_service_accaunt }}"
+  user:
+    name: "{{ role_service_accaunt }}"
+    system: yes
+    create_home: no
+    comment: "sirvice account for  {{ role_name }}"
+  become: yes
+
+- name: "create directory for  {{ role_name }} in {{ prgogramm_path }}"
+  file:
+    path:  "{{ prgogramm_path }}"
+    state: directory
+    owner: "{{ role_service_accaunt }}"
+    group: "{{ role_service_accaunt }}"
+    mode:  0777
+    recurse: yes
+  become: yes  
+
+# download will be canceled if the destination directory is not empty
+- name: checking directory contents
+  find:
+    paths:  "{{ prgogramm_path }}"
+  register: prgogramm_path_content_stat
+
+- name: "dowload and unpack {{ programm_url }}"
+  unarchive:
+    src:  "{{ download_url }}"
+    dest: "{{ prgogramm_path }}"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+  when: prgogramm_path_content_stat.matched < 1
+
+- name: assign correct permissions
+  file:
+    path:  "{{ prgogramm_path }}"
+    owner: "{{ role_service_accaunt }}"
+    group: "{{ role_service_accaunt }}"
+    mode:  0774
+    recurse: yes
+  become: yes
+
+- name: "install {{ role_name }} systemd unit"
+  template:
+    src:   "{{ role_name }}.service"
+    dest:  "/etc/systemd/system/{{ role_name }}.service"
+    owner: "{{ role_service_accaunt }}"
+    group: "{{ role_service_accaunt }}"
+    mode:  0744
+    force: no
+  become:  yes
+
+- name:
+  shell: "systemctl enable {{ role_name }}.service"
+  become:  yes  
+
+- name:
+  shell: "systemctl start {{ role_name }}.service"
+  become:  yes  
+...

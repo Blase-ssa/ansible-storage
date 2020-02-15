@@ -1,0 +1,20 @@
+---
+#########################################################################
+#временно размещю эти переменные тут, потом перетащу
+prog_release:	'3.5.7'
+#prog_mirror:	'http://apache-mirror.rbc.ru/pub/apache'
+#prog_mirror:	'http://mirror.linux-ia64.org/apache'
+#prog_mirror:	'https://www-us.apache.org/dist'
+prog_mirror:	'https://downloads.apache.org'
+
+#########################################################################
+
+role_name: 'zookeeper'
+role_service_accaunt: kafka
+
+# path to store programm
+prgogramm_path: /opt/zookeeper
+
+# download url
+download_url: "{{ prog_mirror }}/{{ role_name }}/{{ role_name }}-{{ prog_release }}/apache-{{ role_name }}-{{ prog_release }}-bin.tar.gz"
+...

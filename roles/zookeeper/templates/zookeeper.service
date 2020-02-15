@@ -1,0 +1,14 @@
+[Unit]
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target
+
+[Service]
+Type=simple
+User={{ role_service_accaunt }}
+ExecStart={{ prgogramm_path }}/bin/zookeeper-server-start.sh {{ prgogramm_path }}/config/zookeeper.properties
+ExecStop={{ prgogramm_path }}/bin/zookeeper-server-stop.sh
+
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
