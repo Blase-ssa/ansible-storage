@@ -7,9 +7,9 @@
     comment: "sirvice account for  {{ role_name }}"
   become: yes
 
-- name: "create directory for  {{ role_name }} in {{ prgogramm_path }}"
+- name: "create directory for  {{ role_name }} in {{ programm_path }}"
   file:
-    path:  "{{ prgogramm_path }}"
+    path:  "{{ programm_path }}"
     state: directory
     owner: "{{ role_service_accaunt }}"
     group: "{{ role_service_accaunt }}"
@@ -20,24 +20,55 @@
 # download will be canceled if the destination directory is not empty
 - name: checking directory contents
   find:
-    paths:  "{{ prgogramm_path }}"
-  register: prgogramm_path_content_stat
+    paths:  "{{ programm_path }}"
+  register: programm_path_content_stat
 
 - name: "dowload and unpack {{ programm_url }}"
   unarchive:
     src:  "{{ download_url }}"
-    dest: "{{ prgogramm_path }}"
+    dest: "{{ programm_path }}"
     remote_src: yes
     extra_opts: [--strip-components=1]
-  when: prgogramm_path_content_stat.matched < 1
+  when: programm_path_content_stat.matched < 1
 
 - name: assign correct permissions
   file:
-    path:  "{{ prgogramm_path }}"
+    path:  "{{ programm_path }}"
     owner: "{{ role_service_accaunt }}"
     group: "{{ role_service_accaunt }}"
     mode:  0774
     recurse: yes
+  become: yes
+
+- name: "create directory for  {{ role_name }} data in {{ programm_path }}"
+  file:
+    path:  "{{ data_path }}"
+    state: directory
+    owner: "{{ role_service_accaunt }}"
+    group: "{{ role_service_accaunt }}"
+    mode:  0774
+    recurse: yes
+  become: yes
+
+- name: "copy config"
+  template:
+    src:   "zoo.cfg"
+    dest:  "{{ programm_path }}/conf"
+    owner: "{{ role_service_accaunt }}"
+    group: "{{ role_service_accaunt }}"
+    mode:  0744
+    force: no
+  become:  yes
+
+  
+
+####################################################  
+- name: opent {{ role_name }} client port
+  iptables:
+    chain: INPUT
+    destination_port: "{{ client_port }}"
+    jump: ACCEPT
+    protocol: tcp
   become: yes
 
 - name: "install {{ role_name }} systemd unit"
@@ -56,5 +87,6 @@
 
 - name:
   shell: "systemctl start {{ role_name }}.service"
-  become:  yes  
+  become:  yes 
+  
 ...

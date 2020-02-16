@@ -14,9 +14,9 @@ WantedBy=multi-user.target
 [Service]
 Type=forking
 User={{ role_service_accaunt }}
-ExecStart={{ prgogramm_path }}/bin/zkServer.sh start
-ExecStop={{ prgogramm_path }}/bin/zkServer.sh stop
-ExecReload={{ prgogramm_path }}/bin/zkServer.sh restart
+ExecStart={{ programm_path }}/bin/zkServer.sh start
+ExecStop={{ programm_path }}/bin/zkServer.sh stop
+ExecReload={{ programm_path }}/bin/zkServer.sh restart
 SyslogIdentifier={{ role_service_accaunt }}
 Restart=always
 RestartSec=0s

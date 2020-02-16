@@ -13,8 +13,14 @@ role_name: 'zookeeper'
 role_service_accaunt: zookeeper
 
 # path to store programm
-prgogramm_path: /opt/zookeeper
+programm_path: /opt/zookeeper
+
+client_port: '2181'
+
+# zookeeper data dir
+data_path: '{{ programm_path }}/data'
 
 # download url
 download_url: "{{ prog_mirror }}/{{ role_name }}/{{ role_name }}-{{ prog_release }}/apache-{{ role_name }}-{{ prog_release }}-bin.tar.gz"
+
 ...

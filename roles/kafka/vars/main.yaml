@@ -14,7 +14,7 @@ role_name: 'kafka'
 role_service_accaunt: kafka
 
 # path to store programm
-prgogramm_path: /opt/kafka
+programm_path: /opt/kafka
 
 # download url
 download_url: "{{ prog_mirror }}/{{ role_name }}/{{ prog_release }}/{{ role_name }}_{{ prog_scale_num }}-{{ prog_release }}.tgz"

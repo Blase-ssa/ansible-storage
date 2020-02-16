@@ -2,8 +2,8 @@
  - name: install kafka and zooKeeer
    hosts: targets
    roles:
-#     - {role: 'common', tags: 'common'}
+     - {role: 'common', tags: 'common'}
      - {role: 'jre', tags: 'jre'}
-#     - {role: 'zookeeper', tags: 'zookeeper'}
-#     - {role: 'kafka', tags: 'kafka'}
+     - {role: 'zookeeper', tags: 'zookeeper'}
+     - {role: 'kafka', tags: 'kafka'}
 ...

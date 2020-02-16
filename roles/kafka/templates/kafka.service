@@ -5,8 +5,8 @@ Requires=zookeeper.service
 [Service]
 Type=simple
 User={{ role_service_accaunt }}
-ExecStart=/bin/sh -c '{{ prgogramm_path }}/bin/kafka-server-start.sh {{ prgogramm_path }}/config/server.properties > /var/log/kafka/kafka.log 2>&1'
-ExecStop=/bin/sh -c '{{ prgogramm_path }}/bin/kafka-server-stop.sh'
+ExecStart=/bin/sh -c '{{ programm_path }}/bin/kafka-server-start.sh {{ programm_path }}/config/server.properties > /var/log/kafka/kafka.log 2>&1'
+ExecStop=/bin/sh -c '{{ programm_path }}/bin/kafka-server-stop.sh'
 Restart=on-abnormal
 
 [Install]

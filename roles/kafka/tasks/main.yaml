@@ -7,9 +7,9 @@
     comment: "sirvice account for  {{ role_name }}"
   become: yes
 
-- name: "create directory for  {{ role_name }} in {{ prgogramm_path }}"
+- name: "create directory for  {{ role_name }} in {{ programm_path }}"
   file:
-    path:  "{{ prgogramm_path }}"
+    path:  "{{ programm_path }}"
     state: directory
     owner: "{{ role_service_accaunt }}"
     group: "{{ role_service_accaunt }}"
@@ -20,20 +20,20 @@
 # download will be canceled if the destination directory is not empty
 - name: checking directory contents
   find:
-    paths:  "{{ prgogramm_path }}"
-  register: prgogramm_path_content_state
+    paths:  "{{ programm_path }}"
+  register: programm_path_content_state
 
 - name: "dowload and unpack {{ programm_url }}"
   unarchive:
     src:  "{{ download_url }}"
-    dest: "{{ prgogramm_path }}"
+    dest: "{{ programm_path }}"
     remote_src: yes
     extra_opts: [--strip-components=1]
-  when: prgogramm_path_content_state.matched < 1
+  when: programm_path_content_state.matched < 1
 
 - name: assign correct permissions
   file:
-    path:  "{{ prgogramm_path }}"
+    path:  "{{ programm_path }}"
     owner: "{{ role_service_accaunt }}"
     group: "{{ role_service_accaunt }}"
     mode:  0774
@@ -51,7 +51,7 @@
   become:  yes
 
 - name:
-  shell: { "systemctl enable {{ role_name }}.service", "systemctl start {{ role_name }}.service" }
+  shell: "systemctl enable {{ role_name }}.service"
   become:  yes  
 
 - name:
