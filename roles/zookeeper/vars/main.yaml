@@ -10,7 +10,7 @@ prog_mirror:	'https://downloads.apache.org'
 #########################################################################
 
 role_name: 'zookeeper'
-role_service_accaunt: kafka
+role_service_accaunt: zookeeper
 
 # path to store programm
 prgogramm_path: /opt/zookeeper
