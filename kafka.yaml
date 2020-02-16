@@ -1,9 +1,20 @@
 ---
- - name: install kafka and zooKeeer
-   hosts: targets
-   roles:
+- name: install common components
+   hosts: all
      - {role: 'common', tags: 'common'}
      - {role: 'jre', tags: 'jre'}
+
+ - name: install kafka and zooKeeer on server group "both"
+   hosts: both
+   roles:
      - {role: 'zookeeper', tags: 'zookeeper'}
+     - {role: 'kafka', tags: 'kafka'}
+
+ - name: install zooKeeer on server group "zookeeper"
+   hosts: zookeeper
+     - {role: 'zookeeper', tags: 'zookeeper'}
+
+ - name: install kafka on server group "kafka"
+   hosts: kafka
      - {role: 'kafka', tags: 'kafka'}
 ...

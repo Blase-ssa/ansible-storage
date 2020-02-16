@@ -23,4 +23,8 @@ data_path: '{{ programm_path }}/data'
 # download url
 download_url: "{{ prog_mirror }}/{{ role_name }}/{{ role_name }}-{{ prog_release }}/apache-{{ role_name }}-{{ prog_release }}-bin.tar.gz"
 
+# znode ports
+znode_port1: '2888'
+znode_port2: '3888'
+ 
 ...

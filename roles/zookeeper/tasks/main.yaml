@@ -57,7 +57,7 @@
     owner: "{{ role_service_accaunt }}"
     group: "{{ role_service_accaunt }}"
     mode:  0744
-    force: no
+    force: yes
   become:  yes
 
   
@@ -67,6 +67,22 @@
   iptables:
     chain: INPUT
     destination_port: "{{ client_port }}"
+    jump: ACCEPT
+    protocol: tcp
+  become: yes
+
+- name: 
+  iptables:
+    chain: INPUT
+    destination_port: "{{ znode_port1 }}"
+    jump: ACCEPT
+    protocol: tcp
+  become: yes
+
+- name: 
+  iptables:
+    chain: INPUT
+    destination_port: "{{ znode_port2 }}"
     jump: ACCEPT
     protocol: tcp
   become: yes
