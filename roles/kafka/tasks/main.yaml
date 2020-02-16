@@ -40,6 +40,20 @@
     recurse: yes
   become: yes
 
+- name: "copy config"
+  template:
+    src:   "server.properties"
+    dest:  "{{ programm_path }}/config"
+    owner: "{{ role_service_accaunt }}"
+    group: "{{ role_service_accaunt }}"
+    mode:  0744
+    force: yes
+  become:  yes
+                                    
+
+
+
+
 - name: "install {{ role_name }} systemd unit"
   template:
     src:   "{{ role_name }}.service"

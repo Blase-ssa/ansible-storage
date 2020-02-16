@@ -60,9 +60,6 @@
     force: yes
   become:  yes
 
-  
-
-####################################################  
 - name: opent {{ role_name }} client port
   iptables:
     chain: INPUT
