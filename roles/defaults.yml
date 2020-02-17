@@ -1,9 +1,0 @@
-kafka_prog_release:	'2.4.0'
-kafka_prog_scale_num:	'2.12'
-zookeeper_prog_release:	'3.5.7'
-
-mirror_list:
-  - 'http://apache-mirror.rbc.ru/pub/apache'
-  - 'http://mirror.linux-ia64.org/apache'
-  - 'https://www-us.apache.org/dist'
-  - 'https://downloads.apache.org'
