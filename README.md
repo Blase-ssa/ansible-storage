@@ -5,7 +5,7 @@ Ansible role for Kafka and Zookeeper
 Пример ansible скриптов для автоматического масштабируемого развёртывания кластера для Kafka и zooKeeper.
 Структура данных набора выполнена согласно рекомендациям "alternative directory layout"
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#alternative-directory-layout
-(структура приведена ниже)
+
 
 # Перед использованием:
 - Заполните hosts файлы в директории inventory/dev (/test /prod)
@@ -15,9 +15,10 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 	
 
 # Пример команды для запуска: 
-ansible-playbook bootstrap.yml -i inventory/dev/hosts
+	ansible-playbook bootstrap.yml -i inventory/dev/hosts
 	
+заменив dev на нужное.
 
-подробнее смотри wiki
+# подробнее смотри wiki
 https://github.com/Blase-ssa/ansible-kafka/wiki
 
