@@ -50,10 +50,6 @@
     force: yes
   become:  yes
                                     
-
-
-
-
 - name: "install {{ role_name }} systemd unit"
   template:
     src:   "{{ role_name }}.service"
