@@ -1,12 +1,11 @@
 ---
 #########################################################################
-#временно размещю эти переменные тут, потом перетащу
+# укажите релиз для скачивания, а так же выберите нужное зеркало
 prog_release:	'3.5.7'
 #prog_mirror:	'http://apache-mirror.rbc.ru/pub/apache'
 #prog_mirror:	'http://mirror.linux-ia64.org/apache'
 #prog_mirror:	'https://www-us.apache.org/dist'
 prog_mirror:	'https://downloads.apache.org'
-
 #########################################################################
 
 role_name: 'zookeeper'
