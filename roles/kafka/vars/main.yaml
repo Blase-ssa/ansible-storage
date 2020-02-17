@@ -1,12 +1,9 @@
 ---
 #########################################################################
 #временно размещю эти переменные тут, потом перетащу
-prog_release:	'2.4.0'
-prog_scale_num:	'2.12'
-#prog_mirror:	'http://apache-mirror.rbc.ru/pub/apache'
-#prog_mirror:	'http://mirror.linux-ia64.org/apache'
-#prog_mirror:	'https://www-us.apache.org/dist'
-prog_mirror:	'https://downloads.apache.org'
+prog_release:	"{{ kafka_prog_release }}"
+prog_scale_num:	"{{ kafka_prog_scale_num }}"
+prog_mirror:	"{% mirror_list[ range(0, mirror_list|length) | random ] %}"
 
 #########################################################################
 
