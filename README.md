@@ -22,11 +22,13 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 заменив dev на нужное.
 
 Можно исключить определённые этапы выполнения с помощью команды:
+
 `ansible-playbook bootstrap.yml --skip-tags "kafka,zookeeper" -i inventories/dev/hosts`
 
 в данном примере роли kafka и zookeepe не будут устанавливаться. 
 
 Или можно выполнить установку определённый ролей:
+
 `ansible-playbook bootstrap.yml --tags "jre,common" -i inventories/dev/hosts`
 
 в результате будут выполнены только роли jre и common.
