@@ -1,5 +1,6 @@
 # ansible-kafka
 Ansible role for Kafka and Zookeeper 
+This is just an example. Do not run it in a real environment until you learn how it works.
 
 # Описание:
 Пример ansible скриптов для автоматического масштабируемого развёртывания кластера для Kafka и zooKeeper.
