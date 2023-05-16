@@ -1,0 +1,25 @@
+- name: install packages for all hosts
+  package:
+    name: "{{ all_pkg_list }}"
+    state: latest
+  become: yes
+  become_method: sudo
+
+- name: install packages for hosts in group main only
+  package:
+    name: "{{ main_pkg_list }}"
+    state: latest
+  become: yes
+  become_method: sudo
+  when: inventory_hostname in groups['main']
+
+- name: install packages for hosts in group main and running OS family Debian
+  package:
+    name: "{{ debian_main_pkg_list }}"
+    state: latest
+  become: yes
+  become_method: sudo
+  when: 
+  - inventory_hostname in groups['main']
+  - ansible_facts['os_family'] == "Debian"
+  

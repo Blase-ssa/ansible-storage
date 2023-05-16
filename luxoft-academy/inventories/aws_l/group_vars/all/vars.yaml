@@ -1,0 +1,20 @@
+all_pkg_list:
+  - nano
+  - vim
+
+main_pkg_list:
+  - mc
+  - vim
+  - tmux
+  - git
+  # - golang-github-hashicorp-terraform-json-dev
+
+debian_main_pkg_list:
+  - aptitude
+
+user_info:
+  sn: "Sergei Silantev"
+  email: "{{ vault_email }}"
+  git_branch: "sergei-silantev"
+
+  

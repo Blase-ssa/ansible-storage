@@ -1,0 +1,13 @@
+---
+- name: "initial configuration: install SSH certificates"
+  hosts: all
+  roles:
+    - {role: 'install_ssh_key'}
+  tags: "ssh_key"
+
+- name: "initial configuration: configure main server"
+  hosts: main
+  roles:
+    - {role: 'install_software'} # install software for main server
+    - {role: 'congigure_users'} # configure git for main server
+...

@@ -1,0 +1,31 @@
+- name: "Copying .bashrc for regular user"
+  copy:
+    src: "user.bashrc"
+    dest: "~/.bashrc"
+    remote_src: false
+
+- name: "Copying .bashrc for regular user"
+  copy:
+    src: "root.bashrc"
+    dest: "/root/.bashrc"
+    remote_src: false
+  become: yes
+
+- name: create folders
+  file:
+    path: "~/Git/codecommit"
+    state: directory
+
+- name: create folders
+  file:
+    path: "~/Git/github"
+    state: directory
+
+- name: Configure Git codecommit
+  shell: "{{ item }}"
+  with_items:
+    - git config --global credential.helper '!aws codecommit credential-helper $@'
+    - git config --global credential.useHttpPath true
+    - git config --global user.name "{{ user_info.sn }}"
+    - git config --global user.email "{{ user_info.email }}"
+    - cd ~/Git/codecommit && git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/jenkins_tr_18 && cd jenkins_tr_18 && ( git checkout {{ user_info.git_branch }} || git checkout -b {{ user_info.git_branch }} )
